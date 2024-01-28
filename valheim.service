@@ -14,9 +14,10 @@ ExecStart=/usr/bin/docker run \
           --rm \
           --cap-add=sys_nice \
           --stop-timeout 120 \
-          -v /etc/valheim:/config:Z \
-          -v /opt/valheim:/opt/valheim:Z \
-          -p 2456-2457:2456-2457/udp \
+          -v /storage/servers/valheim/server1/config:/config:Z \
+          -v /storage/servers/valheim/server1/data:/opt/valheim:Z \
+          -e VALHEIM_PLUS=true \
+          -p 2456-2458:2456-2458/udp \
           --env-file /etc/sysconfig/valheim-server \
           ghcr.io/lloesche/valheim-server
 ExecStop=/usr/bin/docker stop %n
